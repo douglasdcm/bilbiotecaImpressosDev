@@ -8,12 +8,12 @@ function listar_folhetos() {
 	//var nome = "fake";
 	
 	//TODO
-	//a lista de folhetos depende da função de cadastramento
+	//a lista de folhetos depende da funÃ§Ã£o de cadastramento
 	var tabela = '<table class="table table-striped" style="width:100%">' +
 										'<tr>' +
 											'<th>ID</th>' +
 											'<th>Nome</th>' +
-											'<th>Descrição</th>' +
+											'<th>Descriï¿½ï¿½o</th>' +
 											'<th>Status</th>' +
 										'</tr>';
 

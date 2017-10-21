@@ -21,9 +21,9 @@ function exibir_detalhes_folheto () {
 	tabela = '<table class="table table-striped" style="width:100%">' +
 										'<tr>' +
 											'<th>Nome</th>' +
-											'<th>Descrição</th>' +
+											'<th>Descriï¿½ï¿½o</th>' +
 											'<th>Status</th>' +
-											'<th>Ações</th>' +
+											'<th>Aï¿½ï¿½es</th>' +
 											'<th>Componentes</th>' +
 										'</tr>';
 	
@@ -35,7 +35,7 @@ function exibir_detalhes_folheto () {
 					'<td><a href="manter_componente.html">Ir para componentes...</a></td>' +
 				'</tr>';
 	
-	//detalhe.innerHTML += '<p>nome: ' + filtered_json[0].nome + ' descrição: ' + filtered_json[0].descricao +'</p>';
+	//detalhe.innerHTML += '<p>nome: ' + filtered_json[0].nome + ' descriï¿½ï¿½o: ' + filtered_json[0].descricao +'</p>';
 	detalhe.innerHTML = tabela;
 
 	listar_comentarios(folheto_id);
@@ -51,7 +51,7 @@ function listar_comentarios(folheto_id) {
 	var tabela = '<table class="table table-striped" style="width:100%">' +
 										'<tr>' +
 											'<th>ID</th>' +
-											'<th>Comentário</th>' +
+											'<th>Comentï¿½rio</th>' +
 											'<th>Atualizar</th>' +
 											'<th>Deletar</th>' +
 										'</tr>';
@@ -84,10 +84,10 @@ function adicionar_comentario() {
 	var folheto_id = getCookie("folheto_id");
 	
 	if (campo_comentario == "") {
-		alert("Insira um comentário.");
+		alert("Insira um comentï¿½rio.");
 	} else {
 		//var txt;
-		if (confirm("Gostaria de cadatrar um novo cometário?") == true) {
+		if (confirm("Gostaria de cadatrar um novo cometï¿½rio?") == true) {
 		
 			var comentario_id = chance.guid();
 			var comentario = {
@@ -108,11 +108,11 @@ function adicionar_comentario() {
 			//txt = "Novo rascunho criado.";
 			//lista_comentarios.innerHTML += '<p>' + campo_comentario + '</p>';
 			campo_comentario.value = '';
-			listar_comentarios();
+			listar_comentarios(folheto_id)
 			
 		} //else {
 			//TODO
-			//txt = "Operação cancelada.";
+			//txt = "Operaï¿½ï¿½o cancelada.";
 		//}
 		//document.getElementById("mensagem").innerHTML = txt;
 		
@@ -122,12 +122,13 @@ function adicionar_comentario() {
 
 function atualizar_comentario(comentario_id){
 //alert('atualizar ' + comentario_id);
-	var campo_comentario = document.getElementById('campo_comentario').value
+	var campo_comentario = document.getElementById('campo_comentario').value;
+        var folheto_id = getCookie("folheto_id");
 
 	if (campo_comentario == "") {
-		alert("Insira um comentário.");
+		alert("Insira um comentï¿½rio.");
 	} else {
-		if (confirm("Gostaria de atualizar o comentário?") == true) {
+		if (confirm("Gostaria de atualizar o comentï¿½rio?") == true) {
 	
 			if (localStorage.getItem('comentarios') != null) {
 				var comentarios = JSON.parse(localStorage.getItem('comentarios'));
@@ -138,7 +139,7 @@ function atualizar_comentario(comentario_id){
 				}
 				localStorage.setItem('comentarios', JSON.stringify(comentarios));
 				campo_comentario.valeu = '';
-				listar_comentarios();
+				listar_comentarios(folheto_id);
 			}
 		}
 	}
@@ -148,8 +149,9 @@ function atualizar_comentario(comentario_id){
 function deletar_comentario(comentario_id){
 //function deletar_comentario(texto){
 	//alert('deletar ' + texto);
-	
-	if (confirm("Gostaria de deletar o comentário?") == true) {
+	var folheto_id = getCookie("folheto_id");
+        
+	if (confirm("Gostaria de deletar o comentÃ¡rio?") == true) {
 	
 		if (localStorage.getItem('comentarios') != null) {
 			var comentarios = JSON.parse(localStorage.getItem('comentarios'));
@@ -159,12 +161,12 @@ function deletar_comentario(comentario_id){
 				}
 			}
 			localStorage.setItem('comentarios', JSON.stringify(comentarios));
-			listar_comentarios();
+			listar_comentarios(folheto_id)
 		}
 	}
 	
 	/*
-	if (confirm("Gostaria de deletar o comentário " + texto + "?") == true) {
+	if (confirm("Gostaria de deletar o comentï¿½rio " + texto + "?") == true) {
 
 		if (localStorage.getItem('comentarios') != null) {
 			var comentarios = JSON.parse(localStorage.getItem('comentarios'));
@@ -240,8 +242,8 @@ function fluxo_aprovacao (folheto_id) {
     case "SOLICITAR APROVACAO DE MONTAGEM":
         status = "Aguardando aprovacao de montagem";
         break;
-    case "SOLICITAR APROVAÇÃO DE DIAGRAMACAO ":
-        status = "Aguardando aprovação de diagramacao";
+    case "SOLICITAR APROVAï¿½ï¿½O DE DIAGRAMACAO ":
+        status = "Aguardando aprovaï¿½ï¿½o de diagramacao";
         break;
     case 2:
         day = "Tuesday";
