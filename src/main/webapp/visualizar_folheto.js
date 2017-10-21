@@ -5,7 +5,7 @@ function exibir_detalhes_folheto () {
 	var status;
 	var tabela;
 	
-	if (localStorage.getItem('folhetos') != null) {
+	if (localStorage.getItem('folhetos') !== null) {
 		var folhetos = JSON.parse(localStorage.getItem('folhetos'));
 		var filtered_json = find_in_object(folhetos, {folheto_id: folheto_id});
 		//alert(filtered_json[0].nome + ' ' + filtered_json[0].descricao);
@@ -58,7 +58,7 @@ function listar_comentarios(folheto_id) {
 											
 	//for (var i = 0; i < comentarios.length; i++) {
 	for (var i = comentarios.length-1; 0 <= i; i--) {
-		if (comentarios[i].folheto_id == folheto_id){
+		if (comentarios[i].folheto_id === folheto_id){
 			var comentario_id = comentarios[i].comentario_id;
 			var texto = comentarios[i].texto;
 				
@@ -72,7 +72,7 @@ function listar_comentarios(folheto_id) {
 		}
 	}
 	
-	tabela += '</table>'
+	tabela += '</table>';
 	
 	lista_comentarios.innerHTML = tabela;
 	
@@ -83,20 +83,20 @@ function adicionar_comentario() {
 	var campo_comentario = document.getElementById('campo_comentario').value;
 	var folheto_id = getCookie("folheto_id");
 	
-	if (campo_comentario == "") {
+	if (campo_comentario === "") {
 		alert("Insira um coment�rio.");
 	} else {
 		//var txt;
-		if (confirm("Gostaria de cadatrar um novo comet�rio?") == true) {
+		if (confirm("Gostaria de cadatrar um novo comet�rio?") === true) {
 		
 			var comentario_id = chance.guid();
 			var comentario = {
 				comentario_id: comentario_id,
 				folheto_id: folheto_id,
 				texto: campo_comentario
-			}
+			};
 
-			if (localStorage.getItem('comentarios') == null) {
+			if (localStorage.getItem('comentarios') === null) {
 				var comentarios = [];
 				comentarios.push(comentario);
 				localStorage.setItem('comentarios', JSON.stringify(comentarios));
@@ -108,7 +108,7 @@ function adicionar_comentario() {
 			//txt = "Novo rascunho criado.";
 			//lista_comentarios.innerHTML += '<p>' + campo_comentario + '</p>';
 			campo_comentario.value = '';
-			listar_comentarios(folheto_id)
+			listar_comentarios(folheto_id);
 			
 		} //else {
 			//TODO
@@ -125,15 +125,15 @@ function atualizar_comentario(comentario_id){
 	var campo_comentario = document.getElementById('campo_comentario').value;
         var folheto_id = getCookie("folheto_id");
 
-	if (campo_comentario == "") {
+	if (campo_comentario === "") {
 		alert("Insira um coment�rio.");
 	} else {
-		if (confirm("Gostaria de atualizar o coment�rio?") == true) {
+		if (confirm("Gostaria de atualizar o coment�rio?") === true) {
 	
-			if (localStorage.getItem('comentarios') != null) {
+			if (localStorage.getItem('comentarios') !== null) {
 				var comentarios = JSON.parse(localStorage.getItem('comentarios'));
 				for (var i = 0; i < comentarios.length; i++) {
-					if (comentarios[i].comentario_id == comentario_id) {
+					if (comentarios[i].comentario_id === comentario_id) {
 						comentarios[i].texto = document.getElementById('campo_comentario').value;
 					}
 				}
@@ -151,17 +151,17 @@ function deletar_comentario(comentario_id){
 	//alert('deletar ' + texto);
 	var folheto_id = getCookie("folheto_id");
         
-	if (confirm("Gostaria de deletar o comentário?") == true) {
+	if (confirm("Gostaria de deletar o comentário?") === true) {
 	
-		if (localStorage.getItem('comentarios') != null) {
+		if (localStorage.getItem('comentarios') !== null) {
 			var comentarios = JSON.parse(localStorage.getItem('comentarios'));
 			for (var i = 0; i < comentarios.length; i++) {
-				if (comentarios[i].comentario_id == comentario_id) {
+				if (comentarios[i].comentario_id === comentario_id) {
 					comentarios.splice(i, 1);
 				}
 			}
 			localStorage.setItem('comentarios', JSON.stringify(comentarios));
-			listar_comentarios(folheto_id)
+			listar_comentarios(folheto_id);
 		}
 	}
 	
@@ -210,10 +210,10 @@ function getCookie(cname) {
     var ca = decodedCookie.split(';');
     for(var i = 0; i <ca.length; i++) {
         var c = ca[i];
-        while (c.charAt(0) == ' ') {
+        while (c.charAt(0) === ' ') {
             c = c.substring(1);
         }
-        if (c.indexOf(name) == 0) {
+        if (c.indexOf(name) === 0) {
             return c.substring(name.length, c.length);
         }
     }
@@ -226,7 +226,7 @@ function find_in_object(my_object, my_criteria){
 
   return my_object.filter(function(obj) {
     return Object.keys(my_criteria).every(function(c) {
-      return obj[c] == my_criteria[c];
+      return obj[c] === my_criteria[c];
     });
   });
 }
