@@ -7,6 +7,7 @@ import static net.sourceforge.jwebunit.junit.JWebUnit.clickLink;
 import static net.sourceforge.jwebunit.junit.JWebUnit.setBaseUrl;
 import static net.sourceforge.jwebunit.junit.JWebUnit.setTestingEngineKey;
 */
+import java.util.logging.Logger;
 import static net.sourceforge.jwebunit.junit.JWebUnit.*;
 
 import org.junit.Before;
@@ -16,6 +17,7 @@ import net.sourceforge.jwebunit.util.TestingEngineRegistry;
 
 
 public class JWebUnitTest {
+    
     @Before
     public void prepare() {
         setTestingEngineKey(TestingEngineRegistry.TESTING_ENGINE_HTMLUNIT); 
@@ -28,12 +30,13 @@ public class JWebUnitTest {
     //@Deprecated
     @Test
     public void testLoginPage() {
-        beginAt("index.jsp"); 
-        //assertTitleEquals("Página inicial");
+        beginAt("montar_folheto.jsp"); 
+        //assertTitleEquals("PÃ¡gina inicial");
         //assertLinkPresent("home");
         //clickLink("home");
         //assertTitleEquals("Home");
     }
+    
     
     /*
     @Deprecated
@@ -58,4 +61,6 @@ public class JWebUnitTest {
         assertTitleEquals("Home");
     }
     */
+    private static final Logger LOG = Logger.getLogger(JWebUnitTest.class.getName());
+    
 }
